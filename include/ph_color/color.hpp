@@ -1,7 +1,31 @@
 #pragma once
 #include <iostream>
 #include <sstream>
+#include <string>
 using namespace std;
+
+
+#define yellow "\033[93m"
+#define green "\033[92m"
+#define black "\033[90m"
+#define red "\033[91m"
+#define blue "\033[94m"
+#define magenta "\033[95m"
+#define cyan "\033[96m"
+#define white "\033[97m"
+
+//string color;
+
+struct text {
+    string text;
+    string color {white};
+    string color_before {white};
+    
+    friend ostream& operator<< (ostream& os, struct text const& t) {
+        os << t.color << t.text << t.color_before;
+        return os;
+    }
+};
 
 namespace _color {
 /**
@@ -27,14 +51,12 @@ namespace _color {
  Bright Cyan     96  106
  Bright White    97  107
  */
-#define yellow "\033[93m"
-#define green "\033[92m"
-#define black "\033[90m"
-#define red "\033[91m"
-#define blue "\033[94m"
-#define magenta "\033[95m"
-#define cyan "\033[96m"
-#define white "\033[97m"
+
+//#define set_color(x) color = x;
+
+
+
+#define SET_COLOR_OR_WHITE(_color) if (string (_color).empty ()) cout << white; else cout << _color; color = _color;
 
     enum Code {
         RED      = 91,
