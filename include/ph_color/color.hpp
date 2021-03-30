@@ -16,8 +16,10 @@ using namespace std;
 
 //string color;
 
+//template <typename T = string>
 struct text {
-    string text;
+    using value_type = string;
+    value_type text;
     string color {white};
     string color_before {white};
     
@@ -26,6 +28,10 @@ struct text {
         return os;
     }
 };
+
+//template <typename T = string>
+//text (T, )
+
 
 namespace _color {
 /**
