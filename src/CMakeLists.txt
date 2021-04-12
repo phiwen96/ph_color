@@ -28,3 +28,9 @@ target_include_directories(ph_color PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
+
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+
+else()
+    set_target_properties(${PROJECT_NAME}          PROPERTIES FOLDER "dependencies/${PROJECT_NAME}")
+endif()
