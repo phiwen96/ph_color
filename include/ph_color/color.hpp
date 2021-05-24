@@ -5,14 +5,28 @@
 using namespace std;
 
 
-#define yellow "\033[93m"
-#define green "\033[92m"
-#define black "\033[90m"
-#define red "\033[91m"
-#define blue "\033[94m"
-#define magenta "\033[95m"
-#define cyan "\033[96m"
-#define white "\033[97m"
+//#define yellow "\033[93m"
+//#define green "\033[92m"
+//#define black "\033[90m"
+//#define red "\033[91m"
+//#define blue "\033[94m"
+//#define magenta "\033[95m"
+//#define cyan "\033[96m"
+//#define white "\033[97m"
+namespace ph{
+struct color
+{
+    inline static constexpr char const* yellow = "\033[93m";
+    inline static constexpr char const* green = "\033[92m";
+    inline static constexpr char const* black = "\033[90m";
+    inline static constexpr char const* red = "\033[91m";
+    inline static constexpr char const* blue = "\033[94m";
+    inline static constexpr char const* magenta = "\033[95m";
+    inline static constexpr char const* cyan = "\033[96m";
+    inline static constexpr char const* white = "\033[97m";
+
+};
+}
 
 //string color;
 
@@ -20,8 +34,8 @@ using namespace std;
 struct text {
     using value_type = string;
     value_type text;
-    string color {white};
-    string color_before {white};
+    string color {ph::color::white};
+    string color_before {ph::color::white};
     
     friend ostream& operator<< (ostream& os, struct text const& t) {
         os << t.color << t.text << t.color_before;
@@ -176,72 +190,72 @@ namespace _color {
 #include <sstream>
 #include <strstream>
 #include <ios>
-class LoggingOutputStreambuf : public std::streambuf, public ostream
-{
-    std::streambuf* myDest;
-//    ofstreambuf myLogFile;
-    std::ostream* myOwner;
-protected:
-    int overflow( int ch ) override
-    {
-//        cout << "kndksnf" << endl;
-//        printf(char(ch);
-//        myLogFile.sputc( ch );  //  ignores errors...
-        return myDest->sputc( ch );
-    }
-public:
-    LoggingOutputStreambuf(
-            std::streambuf* dest
-//                           ,
-//            std::string const& logfileName
-                           )
-        : myDest( dest )
-//        , myLogFile( logfileName.c_str(), std::ios_base::out )
-        , myOwner( nullptr )
-    {
-//        if ( !myLogFile.is_open() ) {
-//            //  Some error handling...
+//class LoggingOutputStreambuf : public std::streambuf, public ostream
+//{
+//    std::streambuf* myDest;
+////    ofstreambuf myLogFile;
+//    std::ostream* myOwner;
+//protected:
+//    int overflow( int ch ) override
+//    {
+////        cout << "kndksnf" << endl;
+////        printf(char(ch);
+////        myLogFile.sputc( ch );  //  ignores errors...
+//        return myDest->sputc( ch );
+//    }
+//public:
+//    LoggingOutputStreambuf(
+//            std::streambuf* dest
+////                           ,
+////            std::string const& logfileName
+//                           )
+//        : myDest( dest )
+////        , myLogFile( logfileName.c_str(), std::ios_base::out )
+//        , myOwner( nullptr )
+//    {
+////        if ( !myLogFile.is_open() ) {
+////            //  Some error handling...
+////        }
+//    }
+//    LoggingOutputStreambuf(
+//            std::ostream& dest
+////                           ,
+////            std::string const& logfileName
+//                           )
+//        : myDest( dest.rdbuf()), myOwner (nullptr), ostream(this)
+//    {
+//        dest.rdbuf( this );
+//        myOwner = &dest;
+////        myDest->sputc('\0');
+////        myDest->sputc('3');
+////        myDest->sputc('[');
+////        myDest->sputc('9');
+////        myDest->sputc('3');
+////        myDest->sputc('m');
+//    }
+//    ~LoggingOutputStreambuf()
+//    {
+////        cout << "yo" << endl;
+////        stringstream buf;
+////        streambuf *backup;
+////
+////        backup = cout.rdbuf();
+////        cout.rdbuf(buf.rdbuf());
+////        buf << "normal buf" << endl;
+////        cout << "cout to buf" << endl;
+////        cout.rdbuf(backup);
+////        cout << "normal cout" << endl;
+////        cout << buf.str() << endl;
+////        cout << "w" << endl;
+////        std::ostringstream ss;
+////        ss << std::cin.rdbuf();
+////        std::string s = ss.str();
+////        cout << s << endl;
+//        if ( myOwner != nullptr ) {
+//            myOwner->rdbuf( myDest );
 //        }
-    }
-    LoggingOutputStreambuf(
-            std::ostream& dest
-//                           ,
-//            std::string const& logfileName
-                           )
-        : myDest( dest.rdbuf()), myOwner (nullptr), ostream(this)
-    {
-        dest.rdbuf( this );
-        myOwner = &dest;
-//        myDest->sputc('\0');
-//        myDest->sputc('3');
-//        myDest->sputc('[');
-//        myDest->sputc('9');
-//        myDest->sputc('3');
-//        myDest->sputc('m');
-    }
-    ~LoggingOutputStreambuf()
-    {
-//        cout << "yo" << endl;
-//        stringstream buf;
-//        streambuf *backup;
-//        
-//        backup = cout.rdbuf();
-//        cout.rdbuf(buf.rdbuf());
-//        buf << "normal buf" << endl;
-//        cout << "cout to buf" << endl;
-//        cout.rdbuf(backup);
-//        cout << "normal cout" << endl;
-//        cout << buf.str() << endl;
-//        cout << "w" << endl;
-//        std::ostringstream ss;
-//        ss << std::cin.rdbuf();
-//        std::string s = ss.str();
-//        cout << s << endl;
-        if ( myOwner != nullptr ) {
-            myOwner->rdbuf( myDest );
-        }
-    }
-};
+//    }
+//};
 
 
 
@@ -313,3 +327,4 @@ namespace ansi {
  std::cout << ansi::foreground_red << "in red" << ansi::reset << std::endl;
 
  */
+
