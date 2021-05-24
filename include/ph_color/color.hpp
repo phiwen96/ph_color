@@ -24,7 +24,12 @@ struct color
     inline static constexpr char const* magenta = "\033[95m";
     inline static constexpr char const* cyan = "\033[96m";
     inline static constexpr char const* white = "\033[97m";
+    
+    static auto print_colors ()
+    {
+        std::cout << ph::color::blue << "hej" << std::endl << ph::color::cyan << "hej" << std::endl << ph::color::green << "hej" << std::endl << ph::color::magenta << "hej" << std::endl << ph::color::red << "hej" << std::endl << ph::color::yellow << "hej" << std::endl << ph::color::white;
 
+    }
 };
 }
 
